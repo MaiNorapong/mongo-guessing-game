@@ -4,7 +4,7 @@ block content
   h1.title= title
 
   if game.answer.length < game.question.length
-    p.subtitle Please choose #{game.choices.join(' or ')} to guess the #{humanizedOrder[game.answer.length + 1]} character.
+    p.subtitle Please choose #{game.choices.join(' or ')} to guess the #{humanizedOrder[game.answer.length]} character.
   if game.answer.length >= game.question.length
     p.subtitle Congratulations You win!
 
