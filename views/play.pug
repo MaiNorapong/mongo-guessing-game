@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1.title= title
+
+  if game.answer.length < game.question.length
+    p.subtitle Please choose #{game.choices.join(' or ')} to guess the #{humanizedOrder[game.answer.length + 1]} character.
+  if game.answer.length >= game.question.length
+    p.subtitle Congratulations You win!
+
+  div.content
+    p Answer: #{game.answer.join(' ')} #{'_ '.repeat(game.charsRemaining)}
+    p Character#{game.charsRemaining === 1 ? '' : 's'} remaining: #{game.charsRemaining}
+    p Fails: #{game.fails}
+
+    if game.answer.length >= game.question.length
+      form(method='post' action='/restart')
+        button.button.is-primary(type='submit') Restart
+    else
+      form(method='post' action='')
+        p Choose:
+        div.field.is-grouped
+          each val in game.choices
+            p.control
+              button.button(type='submit' name='choice' value= val) #{val}
+              |
+              |
+
+  div.content
+    p: a(href='/') Back

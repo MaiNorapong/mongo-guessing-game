@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1.title= title
+
+  form(method='post', action='')
+
+    div.field
+      label.label(for='question') Question:
+      div.control
+        input#question.input(type='text' placeholder='Enter your question here' name='question' value=null===game ? '' : game.question.join(""))
+      p.help A series of characters for people to guess (e.g. ABAB)
+
+    div.field
+      label.label(for='question') Choices:
+      div.control
+        input#choices.input(type='text' placeholder='Enter your choices here' name='choices' value=null===game ? '' : game.choices.join(""))
+      p.help A series of characters (e.g. ABCD)
+
+    div.field
+      div.control
+        button.button.is-link(type='submit') Create
+
+  div.section
+    if errors
+      for error in errors
+        div.notification.is-danger.is-light
+          button.delete
+          | #{error.msg}
+
+  script(src='/javascripts/notification.js')
